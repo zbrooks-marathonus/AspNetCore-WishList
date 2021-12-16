@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using WishList.Data;
 using WishList.Models;
@@ -17,12 +18,8 @@ namespace WishList.Controllers
 
         public IActionResult Index()
         {
-            List<Item> items = new List<Item>();
-            foreach(var item in _context.Items)
-            {
-                items.Add(item);
-            }
-            return View(items);
+            var model = _context.Items.ToList();
+            return View(model);
         }
 
         [HttpGet]
